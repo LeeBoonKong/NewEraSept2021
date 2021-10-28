@@ -24,6 +24,7 @@
         android:layout_gravity="center_horizontal"/>
 
     <EditText
+        android:id="@+id/edtEmail"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:textSize="20sp"
@@ -33,6 +34,7 @@
         android:inputType="textEmailAddress" />
 
     <EditText
+        android:id="@+id/edtPassword"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:textSize="20sp"
@@ -48,6 +50,7 @@
         android:layout_marginTop="15dp">
 
         <Button
+            android:id="@+id/btnLogin"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:text="Login"
@@ -58,6 +61,7 @@
             android:layout_weight="1"/>
 
         <Button
+            android:id="@+id/btnSignup"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:text="SignUp"
