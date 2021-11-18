@@ -30,6 +30,7 @@ public class CoffeeOrderingActivity extends AppCompatActivity {
         checkCream = findViewById(R.id.checkCream);
         checkCookie = findViewById(R.id.checkCookie);
         checkChocolate = findViewById(R.id.checkChocolate);
+
     }
 
     private void setListeners(){
