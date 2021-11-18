@@ -1,4 +1,4 @@
-package com.bk.neweraoctober2021.ListviewExample;
+package com.bk.neweraoctober2021.SimpleListviewExample;
 
 import android.os.Bundle;
 import android.widget.ListView;

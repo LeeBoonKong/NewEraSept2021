@@ -1,4 +1,4 @@
-package com.bk.neweraoctober2021.ListviewExample;
+package com.bk.neweraoctober2021.ComplexListview;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,11 +14,11 @@ import com.bk.neweraoctober2021.R;
 
 import java.util.ArrayList;
 
-public class FruitAdapter extends ArrayAdapter<String> {
-    private ArrayList<String> data;
+class StudentAdapter extends ArrayAdapter<Student> {
+    private ArrayList<Student> data;
     private Context context;
 
-    public FruitAdapter(Context context, ArrayList<String> data){
+    public StudentAdapter(Context context, ArrayList<Student> data){
         super(context, R.layout.single_row_fruit);
         this.data = data;
         this.context = context;
@@ -32,25 +32,33 @@ public class FruitAdapter extends ArrayAdapter<String> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        String fruitName = data.get(position);
+        Student student = data.get(position);
         View view;
 
         if (convertView == null){
             Holder holder = new Holder();
-            view = LayoutInflater.from(context).inflate(R.layout.single_row_fruit, null);
-            holder.tvFruit = view.findViewById(R.id.tvFruit);
-            holder.tvFruit.setText(fruitName);
+            view = LayoutInflater.from(context).inflate(R.layout.single_row_student, null);
+            holder.tvName = view.findViewById(R.id.tvName);
+            holder.tvMatric = view.findViewById(R.id.tvMatric);
+            holder.tvCourse = view.findViewById(R.id.tvCourse);
+
+            holder.tvName.setText(student.getName());
+            holder.tvMatric.setText(student.getMatric());
+            holder.tvCourse.setText(student.getCourse());
+
             view.setTag(holder);
         } else {
             Holder holder = (Holder) convertView.getTag();
             view = convertView;
-            holder.tvFruit.setText(fruitName);
+            holder.tvName.setText(student.getName());
+            holder.tvMatric.setText(student.getMatric());
+            holder.tvCourse.setText(student.getCourse());
         }
 
         return view;
     }
 
     private static class Holder{
-        TextView tvFruit;
+        TextView tvName, tvMatric, tvCourse;
     }
 }
