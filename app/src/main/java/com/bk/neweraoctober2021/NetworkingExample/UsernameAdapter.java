@@ -1,4 +1,4 @@
-package com.bk.neweraoctober2021.SimpleListviewExample;
+package com.bk.neweraoctober2021.NetworkingExample;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,11 +14,11 @@ import com.bk.neweraoctober2021.R;
 
 import java.util.ArrayList;
 
-public class FruitAdapter extends ArrayAdapter<String> {
+class UsernameAdapter extends ArrayAdapter<String> {
     private ArrayList<String> data;
     private Context context;
 
-    public FruitAdapter(Context context, ArrayList<String> data){
+    public UsernameAdapter(Context context, ArrayList<String> data){
         super(context, R.layout.single_row_string);
         this.data = data;
         this.context = context;
@@ -38,19 +38,19 @@ public class FruitAdapter extends ArrayAdapter<String> {
         if (convertView == null){
             Holder holder = new Holder();
             view = LayoutInflater.from(context).inflate(R.layout.single_row_string, null);
-            holder.tvFruit = view.findViewById(R.id.tvString);
-            holder.tvFruit.setText(fruitName);
+            holder.tvName = view.findViewById(R.id.tvString);
+            holder.tvName.setText(fruitName);
             view.setTag(holder);
         } else {
             Holder holder = (Holder) convertView.getTag();
             view = convertView;
-            holder.tvFruit.setText(fruitName);
+            holder.tvName.setText(fruitName);
         }
 
         return view;
     }
 
     private static class Holder{
-        TextView tvFruit;
+        TextView tvName;
     }
 }

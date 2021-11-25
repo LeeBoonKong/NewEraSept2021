@@ -19,7 +19,7 @@ class StudentAdapter extends ArrayAdapter<Student> {
     private Context context;
 
     public StudentAdapter(Context context, ArrayList<Student> data){
-        super(context, R.layout.single_row_fruit);
+        super(context, R.layout.single_row_string);
         this.data = data;
         this.context = context;
     }

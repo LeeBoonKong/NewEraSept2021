@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SimpleListviewExample.ListviewExampleActivity">
+    tools:context=".NetworkingExample.NetworkExample">
 
     <ListView
         android:id="@+id/listview"
@@ -12,4 +12,11 @@
         android:layout_height="match_parent"
         tools:listitem="@layout/single_row_string"/>
 
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>
