@@ -1,8 +1,11 @@
 package com.bk.neweraoctober2021.ComplexListview;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bk.neweraoctober2021.R;
@@ -43,5 +46,19 @@ public class ComplexListviewExampleActivity extends AppCompatActivity {
     private void setListeners(){
         StudentAdapter adapter = new StudentAdapter(this, studentList);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                StudentAdapter studentAdapter = (StudentAdapter) listView.getAdapter();
+                Student student = studentAdapter.getData().get(i);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(ComplexListviewExampleActivity.this);
+                builder.setTitle(student.getName())
+                        .setMessage(student.getCourse())
+                        .setNeutralButton("OK", null)
+                        .show();
+            }
+        });
     }
 }

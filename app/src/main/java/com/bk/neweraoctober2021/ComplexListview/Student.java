@@ -1,6 +1,7 @@
 package com.bk.neweraoctober2021.ComplexListview;
 
-class Student {
+//POJO
+public class Student {
     private String name, matric, course;
 
     public Student(){

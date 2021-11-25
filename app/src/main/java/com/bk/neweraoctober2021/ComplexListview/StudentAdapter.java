@@ -58,6 +58,10 @@ class StudentAdapter extends ArrayAdapter<Student> {
         return view;
     }
 
+    public ArrayList<Student> getData(){
+        return data;
+    }
+
     private static class Holder{
         TextView tvName, tvMatric, tvCourse;
     }
