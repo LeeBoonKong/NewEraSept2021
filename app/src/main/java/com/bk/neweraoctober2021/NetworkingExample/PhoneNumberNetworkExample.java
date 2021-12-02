@@ -24,16 +24,17 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class NetworkExample extends AppCompatActivity {
+public class PhoneNumberNetworkExample extends AppCompatActivity {
     private OkHttpClient client = new OkHttpClient();
-    private ArrayList<String> userList = new ArrayList<>();
+    private ArrayList<Contact> contactArrayList = new ArrayList<>();
     private ListView listView;
     private ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_network_example);
+        setContentView(R.layout.activity_phone_number_network_example);
         findViews();
         setListeners();
         getDataFromInternet();
@@ -49,7 +50,7 @@ public class NetworkExample extends AppCompatActivity {
     }
 
     private void initListview(){
-        UsernameAdapter adapter = new UsernameAdapter(this, userList);
+        PhoneNumberAdapter adapter = new PhoneNumberAdapter(this, contactArrayList);
         listView.setAdapter(adapter);
     }
 
@@ -57,7 +58,7 @@ public class NetworkExample extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
 
         Request request = new Request.Builder()
-                .url("https://api.jsonbin.io/v3/b/60d14dca8ea8ec25bd12b9b4")
+                .url("https://api.jsonbin.io/v3/b/5f240dc8250d377b5dc79d7a")
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -65,7 +66,7 @@ public class NetworkExample extends AppCompatActivity {
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 runOnUiThread(() -> {
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(NetworkExample.this, "Fail to Fetch", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PhoneNumberNetworkExample.this, "Fail to Fetch", Toast.LENGTH_SHORT).show();
                 });
             }
 
@@ -74,10 +75,15 @@ public class NetworkExample extends AppCompatActivity {
                 String res = response.body().string();
                 try {
                     JSONObject resObject = new JSONObject(res);
-                    JSONArray usersArray = resObject.getJSONObject("record").getJSONArray("users");
+                    JSONArray contactArray = resObject.getJSONObject("record").getJSONArray("response");
 
-                    for(int i=0; i < usersArray.length(); i++){
-                        userList.add(usersArray.getString(i));
+                    for(int i=0; i < contactArray.length(); i++){
+                        JSONObject contactObject = contactArray.getJSONObject(i);
+                        String name = contactObject.getString("name");
+                        String number = contactObject.getString("number");
+
+                        Contact contact = new Contact(name, number);
+                        contactArrayList.add(contact);
                     }
 
                     runOnUiThread(() -> {

@@ -11,15 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NewEraOctober2021">
-        <activity android:name=".NetworkingExample.NetworkExample">
+        <activity android:name=".NetworkingExample.PhoneNumberNetworkExample">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RecylerviewExample.RecyclerviewActivity">
-        </activity>
+        <activity android:name=".NetworkingExample.NetworkExample"></activity>
+        <activity android:name=".RecylerviewExample.RecyclerviewActivity"></activity>
         <activity android:name=".ComplexListview.ComplexListviewExampleActivity" />
         <activity android:name=".SimpleListviewExample.ListviewExampleActivity" />
         <activity android:name=".CoffeeOrderingActivity" />
