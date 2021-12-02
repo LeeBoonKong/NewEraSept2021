@@ -1,6 +1,8 @@
 package com.bk.neweraoctober2021;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
@@ -10,6 +12,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String PREF_USER_STATUS = "USER_STATUS";
+    private static final String KEY_LOGGED_IN = "loggedIn";
     private String email="october2021@email.com";
     private String password="password123";
     private EditText edtEmail, edtPassword;
@@ -21,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         findViews();
         setListeners();
+
+        if(isLoggedIn()){
+            Intent intent = new Intent(MainActivity.this, CoffeeOrderingActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     private void findViews(){
@@ -38,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
             if(inputEmail.equals(email)){
                 if(inputPassword.equals(password)){
+                    setLoggedIn(true);
                     Intent intent = new Intent(MainActivity.this, CoffeeOrderingActivity.class);
                     startActivity(intent);
                     finish();
@@ -55,5 +66,17 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.android.com"));
             startActivity(i);
         });
+    }
+
+    private void setLoggedIn(boolean loggedIn){
+        SharedPreferences pref = getSharedPreferences(PREF_USER_STATUS, Context.MODE_PRIVATE);
+        pref.edit()
+                .putBoolean(KEY_LOGGED_IN, loggedIn)
+                .apply();
+    }
+
+    private boolean isLoggedIn(){
+        SharedPreferences pref = getSharedPreferences(PREF_USER_STATUS, Context.MODE_PRIVATE);
+        return pref.getBoolean(KEY_LOGGED_IN, false);
     }
 }
