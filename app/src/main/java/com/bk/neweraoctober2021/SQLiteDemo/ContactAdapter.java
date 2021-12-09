@@ -1,4 +1,4 @@
-package com.bk.neweraoctober2021.NetworkingExample;
+package com.bk.neweraoctober2021.SQLiteDemo;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,11 +14,11 @@ import com.bk.neweraoctober2021.R;
 
 import java.util.ArrayList;
 
-public class PhoneNumberAdapter extends ArrayAdapter<Contact> {
+class ContactAdapter extends ArrayAdapter<Contact> {
     private ArrayList<Contact> data;
     private Context context;
 
-    public PhoneNumberAdapter(Context context, ArrayList<Contact> data){
+    public ContactAdapter(Context context, ArrayList<Contact> data){
         super(context, R.layout.single_row_phone_number);
         this.data = data;
         this.context = context;
@@ -52,6 +52,12 @@ public class PhoneNumberAdapter extends ArrayAdapter<Contact> {
         }
 
         return view;
+    }
+
+    public void updateData(ArrayList<Contact> newData){
+        this.data.clear();
+        this.data.addAll(newData);
+        notifyDataSetChanged();
     }
 
     private static class Holder{

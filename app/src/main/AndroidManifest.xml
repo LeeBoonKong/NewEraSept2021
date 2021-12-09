@@ -11,22 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NewEraOctober2021">
-        <activity android:name=".SharedPreferenceDemo.SharedpreferencesExampleActivity">
-        </activity>
-        <activity android:name=".NetworkingExample.PhoneNumberNetworkExample">
-        </activity>
-        <activity android:name=".NetworkingExample.NetworkExample" />
-        <activity android:name=".RecylerviewExample.RecyclerviewActivity" />
-        <activity android:name=".ComplexListview.ComplexListviewExampleActivity" />
-        <activity android:name=".SimpleListviewExample.ListviewExampleActivity" />
-        <activity android:name=".CoffeeOrderingActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SQLiteDemo.EditContactActivity"></activity>
+        <activity android:name=".SQLiteDemo.ViewContactActivity" />
+        <activity android:name=".SQLiteDemo.AddContactActivity" />
+        <activity android:name=".SQLiteDemo.ContactPhonebookActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SharedPreferenceDemo.SharedpreferencesExampleActivity" />
+        <activity android:name=".NetworkingExample.PhoneNumberNetworkExample" />
+        <activity android:name=".NetworkingExample.NetworkExample" />
+        <activity android:name=".RecylerviewExample.RecyclerviewActivity" />
+        <activity android:name=".ComplexListview.ComplexListviewExampleActivity" />
+        <activity android:name=".SimpleListviewExample.ListviewExampleActivity" />
+        <activity android:name=".CoffeeOrderingActivity" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
