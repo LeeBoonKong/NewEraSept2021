@@ -13,6 +13,7 @@ import com.bk.neweraoctober2021.R;
 
 import java.util.ArrayList;
 
+//Main Phonebook Activity
 public class ContactPhonebookActivity extends AppCompatActivity {
     private ArrayList<Contact> contactList;
     private ContactDBHelper helper;
