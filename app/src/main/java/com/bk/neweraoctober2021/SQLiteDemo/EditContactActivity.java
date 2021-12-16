@@ -8,11 +8,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bk.neweraoctober2021.R;
+import com.bk.neweraoctober2021.SQLiteDemo.Room.ContactDatabase;
+import com.bk.neweraoctober2021.SQLiteDemo.Room.ContactPOJO;
 
 public class EditContactActivity extends AppCompatActivity {
     private EditText edtName, edtNumber;
     private Button btnSave;
-    private Contact contact = new Contact();
+    private ContactPOJO contact = new ContactPOJO();
     private ContactDBHelper helper;
 
     @Override
@@ -49,9 +51,15 @@ public class EditContactActivity extends AppCompatActivity {
             contact.setName(edtName.getText().toString());
             contact.setNumber(edtNumber.getText().toString());
 
-            helper.updateContact(contact);
+            editContact(contact);
             Toast.makeText(this, "Contact Updated", Toast.LENGTH_SHORT).show();
             finish();
         });
+    }
+
+    private void editContact(ContactPOJO contact){
+        new Thread( () -> {
+            ContactDatabase.getInstance(this).contactDAO().updateContact(contact);
+        }).start();
     }
 }

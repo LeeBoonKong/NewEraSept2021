@@ -8,6 +8,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bk.neweraoctober2021.R;
+import com.bk.neweraoctober2021.SQLiteDemo.Room.ContactDatabase;
+import com.bk.neweraoctober2021.SQLiteDemo.Room.ContactPOJO;
 
 public class AddContactActivity extends AppCompatActivity {
     private ContactDBHelper helper;
@@ -18,7 +20,7 @@ public class AddContactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_contact);
-        helper = new ContactDBHelper(this);
+//        helper = new ContactDBHelper(this);
         findViews();
         setListeners();
     }
@@ -37,11 +39,17 @@ public class AddContactActivity extends AppCompatActivity {
             if(name.isEmpty() || number.isEmpty()){
                 Toast.makeText(this, "Name or Number cannot be empty", Toast.LENGTH_SHORT).show();
             } else {
-                Contact contact = new Contact(name, number);
-                helper.insertContact(contact);
-                finish();
+                ContactPOJO contact = new ContactPOJO(name, number);
+                addContact(contact);
             }
         });
+    }
+
+    private void addContact(ContactPOJO contact){
+        new Thread(() -> {
+            ContactDatabase.getInstance(this).contactDAO().insertContact(contact);
+            runOnUiThread(this::finish);
+        }).start();
     }
 
 }

@@ -11,14 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bk.neweraoctober2021.R;
+import com.bk.neweraoctober2021.SQLiteDemo.Room.ContactPOJO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 class ContactAdapter extends ArrayAdapter<Contact> {
-    private ArrayList<Contact> data;
+    private ArrayList<ContactPOJO> data = new ArrayList<>();
     private Context context;
 
-    public ContactAdapter(Context context, ArrayList<Contact> data){
+    public ContactAdapter(Context context, ArrayList<ContactPOJO> data){
         super(context, R.layout.single_row_phone_number);
         this.data = data;
         this.context = context;
@@ -32,7 +34,7 @@ class ContactAdapter extends ArrayAdapter<Contact> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Contact contact = data.get(position);
+        ContactPOJO contact = data.get(position);
         View view;
 
         if (convertView == null){
@@ -54,7 +56,7 @@ class ContactAdapter extends ArrayAdapter<Contact> {
         return view;
     }
 
-    public void updateData(ArrayList<Contact> newData){
+    public void updateData(List<ContactPOJO> newData){
         this.data.clear();
         this.data.addAll(newData);
         notifyDataSetChanged();

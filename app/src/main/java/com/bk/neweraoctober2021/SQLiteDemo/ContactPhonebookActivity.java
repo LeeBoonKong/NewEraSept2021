@@ -10,33 +10,35 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bk.neweraoctober2021.R;
+import com.bk.neweraoctober2021.SQLiteDemo.Room.ContactDatabase;
+import com.bk.neweraoctober2021.SQLiteDemo.Room.ContactPOJO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //Main Phonebook Activity
 public class ContactPhonebookActivity extends AppCompatActivity {
-    private ArrayList<Contact> contactList;
+    private ArrayList<ContactPOJO> contactList = new ArrayList<>();
     private ContactDBHelper helper;
     private ListView listView;
     private Button btnAddContact;
+    private ContactAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_phonebook);
-        helper = new ContactDBHelper(this);
-        getDataFromDatabase();
+//        helper = new ContactDBHelper(this);
         findViews();
         setListeners();
+        getDataFromDatabase();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        ContactAdapter adapter = (ContactAdapter) listView.getAdapter();
         this.contactList.clear();
         getDataFromDatabase();
-        adapter.updateData(contactList);
     }
 
     private void findViews(){
@@ -48,6 +50,8 @@ public class ContactPhonebookActivity extends AppCompatActivity {
         ContactAdapter adapter = new ContactAdapter(this, contactList);
         listView.setAdapter(adapter);
 
+        this.adapter = (ContactAdapter) listView.getAdapter();
+
         btnAddContact.setOnClickListener( view -> {
             Intent i = new Intent(this, AddContactActivity.class);
             startActivity(i);
@@ -56,7 +60,7 @@ public class ContactPhonebookActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Contact contact = contactList.get(i);
+                ContactPOJO contact = contactList.get(i);
                 Intent intent = new Intent(ContactPhonebookActivity.this, ViewContactActivity.class);
                 intent.putExtra("id", contact.getId());
                 intent.putExtra("name", contact.getName());
@@ -67,6 +71,12 @@ public class ContactPhonebookActivity extends AppCompatActivity {
     }
 
     private void getDataFromDatabase(){
-        contactList = helper.getAllContacts();
+        new Thread(() -> {
+            ContactDatabase database = ContactDatabase.getInstance(this);
+            List<ContactPOJO> newList = database.contactDAO().getAllContacts();
+            runOnUiThread( () -> {
+                adapter.updateData(newList);
+            });
+        }).start();
     }
 }

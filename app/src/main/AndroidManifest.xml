@@ -14,7 +14,8 @@
         <activity android:name=".SQLiteDemo.EditContactActivity"></activity>
         <activity android:name=".SQLiteDemo.ViewContactActivity" />
         <activity android:name=".SQLiteDemo.AddContactActivity" />
-        <activity android:name=".SQLiteDemo.ContactPhonebookActivity">
+        <activity android:name=".SQLiteDemo.ContactPhonebookActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
