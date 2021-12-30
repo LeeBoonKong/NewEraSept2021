@@ -11,21 +11,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NewEraOctober2021">
-        <activity android:name=".FragmentExample.FragmentExampleActivity"
-            android:exported="true">
+        <activity android:name=".WhatsappClone.WhatsappMainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".FragmentExample.FragmentExampleActivity"
+            android:exported="true">
+        </activity>
         <activity android:name=".SQLiteDemo.EditContactActivity" />
         <activity android:name=".SQLiteDemo.ViewContactActivity" />
         <activity android:name=".SQLiteDemo.AddContactActivity" />
         <activity
             android:name=".SQLiteDemo.ContactPhonebookActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity android:name=".SharedPreferenceDemo.SharedpreferencesExampleActivity" />
         <activity android:name=".NetworkingExample.PhoneNumberNetworkExample" />
         <activity android:name=".NetworkingExample.NetworkExample" />
